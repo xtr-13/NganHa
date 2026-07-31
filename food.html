@@ -41,51 +41,81 @@
 
 <br>
     </div>
-    <button class="button" onclick="location.href='trang cuối.html'">
-      Tiếp
-    </button>
+ <button class="button" onclick="sendFood()">
+    Tiếp
+</button>
   
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <script>
+ <script>
 
-    emailjs.init("_5gTYYeDHpz4pJYrQ");
+emailjs.init("_5gTYYeDHpz4pJYrQ");
 
-    function sendFood() {
+function sendFood(){
 
-      // Lấy tất cả món được chọn
-      const selectedFoods = [];
+    const selectedFoods=[];
 
-      document.querySelectorAll('input[name="food"]:checked')
-        .forEach((food) => {
-          selectedFoods.push(food.value);
-        });
+    document.querySelectorAll('input[name="food"]:checked')
+    .forEach(function(food){
 
-      // Nếu chưa chọn món
-      if (selectedFoods.length === 0) {
+        selectedFoods.push(food.value);
 
-        alert("Bbi chọn món đi nà 😘");
+    });
+
+    const otherFood=document
+    .getElementById("otherFood")
+    .value
+    .trim();
+
+    if(otherFood!==""){
+
+        selectedFoods.push(otherFood);
+
+    }
+
+    if(selectedFoods.length===0){
+
+        alert("Bbi chọn hoặc nhập món đi nà 😘");
 
         return;
-      }
 
-      // Nội dung gửi mail
-      const templateParams = {
+    }
 
-        girl_name: "Bé iu",
+    const templateParams={
 
-        date_choice:
-          "Bbi muốn ăn: " + selectedFoods.join(", ")
+        girl_name:"Bé iu",
 
-      };
+        date_choice:selectedFoods.join(", ")
 
-      // Gửi mail
-      emailjs.send(
+    };
+
+    emailjs.send(
+
         "service_5pdh7mi",
+
         "template_s845ep8",
+
         templateParams
-      )
 
-      .then(function () {
+    )
 
+    .then(function(){
+
+        alert("Anh nhận được món em muốn rồi ❤️");
+
+        location.href="trang cuối.html";
+
+    })
+
+    .catch(function(error){
+
+        alert("Gửi thất bại 😥");
+
+        console.log(error);
+
+    });
+
+}
+
+</script>
 </body>
