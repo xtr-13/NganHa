@@ -1,32 +1,126 @@
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Love</title>
     <link rel="stylesheet" href="valentine.css">
-  </head>
+</head>
+
+<body>
+
 <center>
-  <body>
-    <div id="valentineQuestion"><b>Em ơi đi chơi với anh nhé bấy biii</b></div>
-    <button class="answerButton" onclick="location.href='ngaydate.html'">
-      Dạaaa
-    </button>
-    <button class="answerButton" id="noButton">Em hong chịu đâu </button>
-    <br>
-    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDdmc2F3b3A3dm9rYTEybGF5dmNvc3N1NzFjOWd0cGx5dWx2eXZlNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="cat asking question" class="responsive">
 
-    <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="ngaydate.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
-        });
-    </script>
-  </center>
+<div id="valentineQuestion"><b>Em ơi đi chơi với anh nhé bấy biii</b></div>
 
-</body></html>
+<button class="answerButton" onclick="location.href='ngaydate.html'">
+    Dạaaa
+</button>
+
+<button class="answerButton" id="noButton">
+    Em hong chịu đâu
+</button>
+
+<br><br>
+
+<!-- NÚT MỞ THƯ -->
+<input type="checkbox" id="openLetter">
+
+<label for="openLetter" class="letterButton">
+    🕷️ Mở thư bí mật
+</label>
+
+<br><br>
+
+<img
+src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDdmc2F3b3A3dm9rYTEybGF5dmNvc3N1NzFjOWd0cGx5dWx2eXZlNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif"
+alt=""
+class="responsive">
+
+<!-- ========================= -->
+<!-- MẠNG NHỆN -->
+<!-- ========================= -->
+
+<div class="web web1"></div>
+<div class="web web2"></div>
+<div class="web web3"></div>
+<div class="web web4"></div>
+
+<!-- ========================= -->
+<!-- PHONG BÌ -->
+<!-- ========================= -->
+
+<div class="overlay">
+
+<div class="envelope">
+
+<div class="cover">
+
+<div class="seal">
+🕷️
+</div>
+
+</div>
+
+<div class="paper">
+
+<h1>💌 Gửi em</h1>
+
+<p>
+
+Chào Khánh Li!
+    Người nhện đây... Sau buổi đi chơi đầu tiên với nhau, không biết là em thấy anh thế nào nhỉ? Còn anh thì thấy em rất đáng yêu, rất cutie, và rất đúng gu của anh ý. Anh mong chúng mình có thể tìm hiểu nhau và tiến xa hơn trong tương lai.
+    Anh có soạn list đồ ăn nếu mà không có món em thích thì em có thể điền vào mục khác nhíe. Cảm ơn em.
+
+</p>
+
+<div class="love">
+
+With Great Love ❤️
+
+</div>
+
+<div class="hero">
+
+🕸️
+
+</div>
+
+<label for="openLetter" class="closeLetter">
+
+Đóng thư
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document
+.getElementById("noButton")
+.addEventListener("click",function(){
+
+var yesButton=document.querySelector(
+'button[onclick*="ngaydate.html"]'
+);
+
+var currentFontSize=parseInt(
+
+window.getComputedStyle(yesButton).fontSize
+
+);
+
+yesButton.style.fontSize=currentFontSize+10+"px";
+
+});
+
+</script>
+
+</center>
+
+</body>
+
+</html>
