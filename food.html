@@ -6,46 +6,86 @@
   </head>
   <body>
     <div id="foodquestion">
-      <b>Lựa món mà em thích điii nàaa?</b>
+      <b>Em muốn anh nấu món gì</b>
     </div>
     <div class="food-selection">
+     <div class="food-item">
+    <img src="https://img.dominos.vn/cach-lam-mi-y-dut-lo-4.jpg" alt="Mì Ý">
+    <label>
+        <input type="checkbox" name="food" value="Mì Ý">
+        Mì Ý
+    </label>
+</div>
       <div class="food-item">
-        <img src="https://dhfoods.com.vn/vnt_upload/File/Image/banh_trang_muoi_nhuyen_hon_hop.jpg" alt="Burgers, fries and fried chicken">
-        <label><input type="checkbox" name="food" value="Burgers, fries and fried chicken">
-          Bánh tráng trộn</label>
-      <div class="food-item">
-        <img src="https://tse3.mm.bing.net/th?id=OIP.ORJ7CcCrwIhk__TFvGZV1AHaFj&pid=Api&P=0&h=180" alt="dog">
-        <label><input type="checkbox" name="food" value="hotdog"> nem nướng</label>
+        <img src="https://tse3.mm.bing.net/th/id/OIP.b2xpfGqC1rZJVI5uN_u17wHaEP?r=0&pid=Api&h=220&P=0" alt="phocuon">
+        <label><input type="checkbox" name="food" value="hotdog">Phở cuốn</label>
       </div>
-      <div class="food-item">
-        <img src="https://tamlong.com.vn/wp-content/uploads/cach-lam-milo-dam-to-ong-1.jpg" alt="koreanfood">
-        <label><input type="checkbox" name="food" value="Korean food">Milo dầm </label>
-      </div>
-      <div class="food-item">
-        <img src="https://lechef.vn/uploads/erp/editor_upload/image_url/267/nhung-mon-an-noi-tieng-cua-am-thuc-phap-7.jpg" alt="pasta">
-        <label><input type="checkbox" name="food" value="pasta"> Macarons</label>
-      </div>
-      <div class="food-item">
-        <img src="https://vnvinaphone.vn/wp-content/uploads/2021/11/Veggie-mania.jpg
-        " alt="pizza">
-        <label><input type="checkbox" name="food" value="pizza"> pizza</label>
-      </div>
-      <div class="food-item">
-        <img src="https://static-images.vnncdn.net/files/publish/cach-lam-kem-mit-thom-ngon-tai-nha-4acea70da8344691ae5793ab99cc14eb.jpg" alt="salad">
-        <label><input type="checkbox" name="food" value="salad"> kem mít</label>
-      </div>
-      <div class="food-item">
-        <img src="https://cdn.tgdd.vn/Files/2021/07/21/1369769/1-mieng-ga-ran-bao-nhieu-calo-meo-an-ga-ran-khong-tang-can-202201051443530144.jpg" alt="steak">
-        <label><input type="checkbox" name="food" value="steak"> Gà rán</label>
+
       </div>
       <div class="food-item">
         <img src="https://static-images.vnncdn.net/files/publish/cach-lam-sua-chua-mit-ngon-tai-nha-75bea5a1fafe4e599c17b1f8f4256985.jpg" alt="sushi">
         <label><input type="checkbox" name="food" value="sushi">chè</label>
       </div>
+       <div id="foodquestion">
+      <b>Khó nghĩ quá không biết Li ăb gì cả Li order anh món để anh nấu nhé!!!</b>
     </div>
-    <button class="button" onclick="location.href='activities.html'">
+          <div class="food-item">
+    <label for="otherFood"><b>🍜nhập món em thích:</b></label><br><br>
+   <input
+    type="text"
+    id="otherFood"
+    name="otherFood"
+    placeholder="Nhập món em thích..."
+    class="foodInput">
+</div>
+
+<br>
+    </div>
+    <button class="button" onclick="location.href='trang cuối.html'">
       Tiếp
     </button>
   
+script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+
+    emailjs.init("_5gTYYeDHpz4pJYrQ");
+
+    function sendFood() {
+
+      // Lấy tất cả món được chọn
+      const selectedFoods = [];
+
+      document.querySelectorAll('input[name="food"]:checked')
+        .forEach((food) => {
+          selectedFoods.push(food.value);
+        });
+
+      // Nếu chưa chọn món
+      if (selectedFoods.length === 0) {
+
+        alert("Bbi chọn món đi nà 😘");
+
+        return;
+      }
+
+      // Nội dung gửi mail
+      const templateParams = {
+
+        girl_name: "Bé iu",
+
+        date_choice:
+          "Bbi muốn ăn: " + selectedFoods.join(", ")
+
+      };
+
+      // Gửi mail
+      emailjs.send(
+        "service_5pdh7mi",
+        "template_s845ep8",
+        templateParams
+      )
+
+      .then(function () {
 
 </body>
