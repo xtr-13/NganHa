@@ -84,3 +84,744 @@ body {
     background-color: #fff5e4;
     color: #ff9494;
 }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* Nút mở thư */
+
+#openLetter{
+    display:none;
+}
+
+.letterButton{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:15px 40px;
+
+    border-radius:50px;
+
+    background:linear-gradient(135deg,#c60000,#004bff);
+
+    color:#fff;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    box-shadow:
+    0 0 15px rgba(255,0,0,.4),
+    0 0 30px rgba(0,80,255,.4);
+
+    font-weight:bold;
+
+}
+
+.letterButton:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:
+    0 0 30px red,
+    0 0 60px blue;
+
+}
+
+/* Overlay */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.82);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    visibility:hidden;
+
+    opacity:0;
+
+    transition:.6s;
+
+    z-index:9999;
+
+}
+
+/* checkbox hack */
+
+#openLetter:checked ~ .overlay{
+
+    visibility:visible;
+
+    opacity:1;
+
+}
+
+/* ===================================================
+   ENVELOPE
+=================================================== */
+
+.envelope{
+
+    width:430px;
+
+    height:320px;
+
+    position:relative;
+
+    perspective:1200px;
+
+}
+
+/* Thân phong bì */
+
+.paper{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:35px;
+
+    transform:translateY(140px);
+
+    transition:1s;
+
+    overflow:auto;
+
+    box-shadow:
+
+    0 0 30px rgba(255,0,0,.35),
+
+    0 0 60px rgba(0,0,255,.25);
+
+}
+
+/* mở thư */
+
+#openLetter:checked ~ .overlay .paper{
+
+    transform:translateY(0);
+
+}
+
+/* Nắp phong bì */
+
+.cover{
+
+    position:absolute;
+
+    width:100%;
+
+    height:180px;
+
+    background:#c30000;
+
+    clip-path:polygon(0 0,100% 0,50% 100%);
+
+    transform-origin:top;
+
+    transition:1s;
+
+    z-index:99;
+
+}
+
+/* lưới nhện */
+
+.cover::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    repeating-linear-gradient(
+    45deg,
+    transparent 0,
+    transparent 18px,
+    rgba(255,255,255,.15) 19px,
+    transparent 20px),
+
+    repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 18px,
+    rgba(255,255,255,.15) 19px,
+    transparent 20px);
+
+}
+
+#openLetter:checked ~ .overlay .cover{
+
+    transform:rotateX(-180deg);
+
+}
+
+/* con dấu */
+
+.seal{
+
+    position:absolute;
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#8f0000;
+
+    left:50%;
+
+    bottom:-28px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:40px;
+
+    color:white;
+
+    box-shadow:
+
+    0 0 20px red,
+
+    inset 0 0 10px rgba(255,255,255,.3);
+
+}
+
+/* ===================================================
+   GIẤY THƯ
+=================================================== */
+
+.paper h1{
+
+    color:#d60000;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    font-size:32px;
+
+}
+
+.paper p{
+
+    color:#444;
+
+    line-height:1.8;
+
+    font-size:18px;
+
+}
+
+.love{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    font-size:28px;
+
+    color:#d60000;
+
+    font-weight:bold;
+
+    animation:loveGlow 2s infinite;
+
+}
+
+@keyframes loveGlow{
+
+0%{
+
+text-shadow:0 0 10px red;
+
+}
+
+50%{
+
+text-shadow:
+
+0 0 30px red,
+
+0 0 60px blue;
+
+}
+
+100%{
+
+text-shadow:0 0 10px red;
+
+}
+
+}
+
+/* nút đóng */
+
+.closeLetter{
+
+display:inline-block;
+
+margin-top:30px;
+
+padding:12px 25px;
+
+background:#d60000;
+
+color:white;
+
+border-radius:30px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.closeLetter:hover{
+
+background:#004cff;
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.envelope{
+
+width:90%;
+
+height:300px;
+
+}
+
+.paper{
+
+padding:20px;
+
+}
+
+.paper h1{
+
+font-size:26px;
+
+}
+
+.paper p{
+
+font-size:16px;
+
+}
+
+}
+/* ===========================================================
+   SPIDER STYLE - PART 2
+===========================================================*/
+
+/* ==========================
+   WEB FROM 4 CORNERS
+========================== */
+
+.web{
+    position:fixed;
+    width:320px;
+    height:320px;
+    pointer-events:none;
+    opacity:0;
+    z-index:9998;
+    transition:1s;
+}
+
+.web::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    repeating-radial-gradient(circle,
+    rgba(255,255,255,.35) 0px,
+    rgba(255,255,255,.35) 1px,
+    transparent 2px,
+    transparent 25px),
+
+    repeating-conic-gradient(
+    rgba(255,255,255,.5) 0deg,
+    rgba(255,255,255,.5) 1deg,
+    transparent 2deg,
+    transparent 18deg);
+
+    border-radius:50%;
+}
+
+.web1{
+    top:-180px;
+    left:-180px;
+    transform:scale(.2) rotate(-90deg);
+}
+
+.web2{
+    top:-180px;
+    right:-180px;
+    transform:scale(.2) rotate(90deg);
+}
+
+.web3{
+    bottom:-180px;
+    left:-180px;
+    transform:scale(.2) rotate(180deg);
+}
+
+.web4{
+    bottom:-180px;
+    right:-180px;
+    transform:scale(.2) rotate(-180deg);
+}
+
+#openLetter:checked ~ .web{
+    opacity:.7;
+}
+
+#openLetter:checked ~ .web1{
+    animation:webMove1 1s forwards;
+}
+
+#openLetter:checked ~ .web2{
+    animation:webMove2 1s forwards;
+}
+
+#openLetter:checked ~ .web3{
+    animation:webMove3 1s forwards;
+}
+
+#openLetter:checked ~ .web4{
+    animation:webMove4 1s forwards;
+}
+
+@keyframes webMove1{
+    to{
+        transform:translate(160px,160px) scale(1);
+    }
+}
+
+@keyframes webMove2{
+    to{
+        transform:translate(-160px,160px) scale(1);
+    }
+}
+
+@keyframes webMove3{
+    to{
+        transform:translate(160px,-160px) scale(1);
+    }
+}
+
+@keyframes webMove4{
+    to{
+        transform:translate(-160px,-160px) scale(1);
+    }
+}
+
+/* ==========================
+   RED BLUE GLOW
+========================== */
+
+.overlay::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+radial-gradient(circle at left,
+rgba(255,0,0,.25),
+transparent 50%),
+
+radial-gradient(circle at right,
+rgba(0,100,255,.25),
+transparent 50%);
+
+animation:glowBG 4s infinite alternate;
+
+}
+
+@keyframes glowBG{
+
+0%{
+
+filter:blur(10px);
+
+}
+
+100%{
+
+filter:blur(40px);
+
+}
+
+}
+
+/* ==========================
+   SMOKE
+========================== */
+
+.overlay::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background-image:
+
+radial-gradient(circle,
+rgba(255,255,255,.12) 0,
+transparent 60%);
+
+background-size:250px 250px;
+
+animation:smoke 12s linear infinite;
+
+opacity:.4;
+
+}
+
+@keyframes smoke{
+
+0%{
+
+transform:translateY(120px);
+
+}
+
+100%{
+
+transform:translateY(-120px);
+
+}
+
+}
+
+/* ==========================
+   PARTICLES
+========================== */
+
+.paper::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background-image:
+
+radial-gradient(#ffffff 2px,transparent 2px);
+
+background-size:40px 40px;
+
+animation:particles 10s linear infinite;
+
+opacity:.18;
+
+pointer-events:none;
+
+}
+
+@keyframes particles{
+
+0%{
+
+background-position:0 0;
+
+}
+
+100%{
+
+background-position:0 -300px;
+
+}
+
+}
+
+/* ==========================
+   PAPER SHADOW
+========================== */
+
+.paper{
+
+animation:paperFloat 3s ease-in-out infinite;
+
+}
+
+@keyframes paperFloat{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.hero{
+
+margin-top:40px;
+
+font-size:80px;
+
+animation:swingHero 3s infinite;
+
+transform-origin:top;
+
+}
+
+@keyframes swingHero{
+
+0%{
+
+transform:rotate(-12deg);
+
+}
+
+50%{
+
+transform:rotate(12deg);
+
+}
+
+100%{
+
+transform:rotate(-12deg);
+
+}
+
+}
+
+/* ==========================
+   END MESSAGE
+========================== */
+
+.love{
+
+position:relative;
+
+}
+
+.love::after{
+
+content:" ❤️";
+
+animation:heartBeat 1s infinite;
+
+}
+
+@keyframes heartBeat{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.3);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ==========================
+   BUTTON EFFECT
+========================== */
+
+.answerButton:hover{
+
+transform:scale(1.08);
+
+box-shadow:
+
+0 0 20px #ff7b7b,
+
+0 0 40px #ff9494;
+
+}
+
+/* ==========================
+   IMAGE EFFECT
+========================== */
+
+.responsive{
+
+transition:.5s;
+
+}
+
+.responsive:hover{
+
+transform:scale(1.08) rotate(-2deg);
+
+filter:drop-shadow(0 0 20px pink);
+
+}
