@@ -1,20 +1,94 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date</title>
-    <link rel="stylesheet" href="date.css">
-  </head>
-  <body>
-    <h1 title="choose a date">Chọn ngày điii em iuu </h1>
-    <form class="form-group">
-      <label>Ngày nào: (chọn ngày)</label>
-      <div>
-        <input type="date">
-        <button class="button" type="submit" formaction="food.html" fdprocessedid="xb8sam">
-          Nộp 
-        </button>
-      </div>
-    </form>
-  
+<!DOCTYPE html>
+<html lang="en">
 
-<span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date</title>
+
+  <link rel="stylesheet" href="date.css" />
+</head>
+
+<body>
+
+  <center>
+
+    <h1 title="choose a date">
+     Em chọn ngày đi 
+    </h1>
+
+    <form class="form-group" onsubmit="sendDate(event)">
+
+      <label>Ngày : (chọn ngày)</label>
+
+      <div>
+
+        <input type="date" id="dateInput" required />
+
+        <button class="button" type="submit">
+          Ấn vào đây
+        </button>
+
+      </div>
+
+    </form>
+
+  </center>
+
+  <!-- EMAILJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+
+    // Kết nối EmailJS
+    emailjs.init("_5gTYYeDHpz4pJYrQ");
+
+    function sendDate(event) {
+
+      event.preventDefault();
+
+      // Lấy ngày được chọn
+      const selectedDate =
+        document.getElementById("dateInput").value;
+
+      // Nội dung gửi mail
+      const templateParams = {
+
+        girl_name: "Bé iu",
+
+        date_choice:
+          "Đã chọn ngày hẹn 💕 Ngày: " + selectedDate
+
+      };
+
+      // Gửi mail
+      emailjs.send(
+        "service_5pdh7mi",
+        "template_s845ep8",
+        templateParams
+      )
+
+      .then(function () {
+
+        alert("yah ");
+
+        // Chuyển sang trang tiếp theo
+        window.location.href = "food.html";
+
+      })
+
+      .catch(function (error) {
+
+        console.log(error);
+
+        alert("Gửi thất bại!");
+
+      });
+
+    }
+
+  </script>
+
+</body>
+
+</html>
