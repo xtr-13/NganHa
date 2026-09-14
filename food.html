@@ -1,121 +1,158 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food </title>
-    <link rel="stylesheet" href="food.css">
-  </head>
-  <body>
-    <div id="foodquestion">
-      <b>Em muốn anh nấu món gì</b>
-    </div>
-    <div class="food-selection">
-     <div class="food-item">
-    <img src="https://img.dominos.vn/cach-lam-mi-y-dut-lo-4.jpg" alt="Mì Ý">
-    <label>
-        <input type="checkbox" name="food" value="Mì Ý">
-        Mì Ý
-    </label>
-</div>
-      <div class="food-item">
-        <img src="https://tse3.mm.bing.net/th/id/OIP.b2xpfGqC1rZJVI5uN_u17wHaEP?r=0&pid=Api&h=220&P=0" alt="phocuon">
-        <label><input type="checkbox" name="food" value="hotdog">Phở cuốn</label>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
 
-      </div>
-      <div class="food-item">
-        <img src="https://static-images.vnncdn.net/files/publish/cach-lam-sua-chua-mit-ngon-tai-nha-75bea5a1fafe4e599c17b1f8f4256985.jpg" alt="sushi">
-        <label><input type="checkbox" name="food" value="sushi">chè</label>
-      </div>
-       <div id="foodquestion">
-      <b>Khó nghĩ quá không biết Li ăn gì cả Li order anh món để anh nấu nhé!!!</b>
-    </div>
-          <div class="food-item">
-    <label for="otherFood"><b>🍜nhập món em thích:</b></label><br><br>
-   <input
-    type="text"
-    id="otherFood"
-    name="otherFood"
-    placeholder="Nhập món em thích..."
-    class="foodInput">
-</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<br>
+  <title>Food</title>
+
+  <link rel="stylesheet" href="food.css" />
+</head>
+
+<body>
+
+  <div id="foodquestion">
+    <b>bbi muốn ăn gì nào </b>
+  </div>
+
+  <div class="food-selection">
+
+    <div class="food-item">
+      <img src="https://statics.vincom.com.vn/xu-huong/Bun-ngan-tron-doc-quyen.jpeg">
+      <label>
+        <input type="checkbox" name="food" value="Bún trộn">
+        Bún trộn 
+      </label>
     </div>
- <button class="button" onclick="sendFood()">
+
+    <div class="food-item">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.8z53M_jG9LcdebseHjSOuwHaEK?pid=Api&h=220&P=0">
+      <label>
+        <input type="checkbox" name="food" value="Cơm tấm">
+        Cơm tấm
+      </label>
+    </div>
+
+    <div class="food-item">
+      <img src="https://i.ytimg.com/vi/5HkPnkG4RR8/maxresdefault.jpg">
+      <label>
+        <input type="checkbox" name="food" value="Sườn xào chua ngọt">
+        Sườn xào chua ngọt
+      </label>
+    </div>
+
+    <div class="food-item">
+      <img src="https://cdn.tgdd.vn/Files/2020/11/26/1309459/cam-nang-cac-mon-canh-tu-xuong-heo-ngon-mieng-de-nau-nhat-202011261552326638.jpg">
+      <label>
+        <input type="checkbox" name="food" value="Canh xương">
+        Canh xương
+      </label>
+    </div>
+
+    <div class="food-item">
+      <img src="https://beplorca.com.vn/wp-content/uploads/2025/10/Canh-cua-vnexpress-1756286225-8516-1756286355-e1760339885806.webp">
+      <label>
+        <input type="checkbox" name="food" value="Pizza">
+        Canh cua rau đay
+      </label>
+    </div>
+
+    <div class="food-item">
+      <img src="https://afamilycdn.com/150157425591193600/2022/7/13/94c39b1f-9859-402b-bae7-ff38d5d8360d-16577021217241716174428.jpg">
+      <label>
+        <input type="checkbox" name="food" value="Thịt rang cháy cạnh">
+      Thịt rang cháy cạnh
+      </label>
+    </div>
+
+    <div class="food-item">
+      <img src="https://daotaobeptruong.vn/wp-content/uploads/2022/04/cach-lam-xa-xiu-bang-goi-gia-vi.jpg">
+      <label>
+        <input type="checkbox" name="food" value="Thịt nướng xá xíu">
+        Thịt nướng xá xíu
+      </label>
+    </div>
+
+    <div class="food-item">
+      <img src="https://www.lorca.vn/wp-content/uploads/2025/04/1-34.jpg">
+      <label>
+        <input type="checkbox" name="food" value="Chả lá lốt">
+        Chả lá lốt
+      </label>
+    </div>
+
+  </div>
+
+  <br>
+
+  <button class="button" onclick="sendFood()">
     Tiếp
-</button>
-  
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  </button>
 
- <script>
+  <!-- EMAILJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-emailjs.init("_5gTYYeDHpz4pJYrQ");
+  <script>
 
-function sendFood(){
+    emailjs.init("_5gTYYeDHpz4pJYrQ");
 
-    const selectedFoods=[];
+    function sendFood() {
 
-    document.querySelectorAll('input[name="food"]:checked')
-    .forEach(function(food){
+      // Lấy tất cả món được chọn
+      const selectedFoods = [];
 
-        selectedFoods.push(food.value);
+      document.querySelectorAll('input[name="food"]:checked')
+        .forEach((food) => {
+          selectedFoods.push(food.value);
+        });
 
-    });
+      // Nếu chưa chọn món
+      if (selectedFoods.length === 0) {
 
-    const otherFood=document
-    .getElementById("otherFood")
-    .value
-    .trim();
-
-    if(otherFood!==""){
-
-        selectedFoods.push(otherFood);
-
-    }
-
-    if(selectedFoods.length===0){
-
-        alert("Bbi chọn hoặc nhập món đi nà 😘");
+        alert("A Đam");
 
         return;
+      }
 
-    }
+      // Nội dung gửi mail
+      const templateParams = {
 
-    const templateParams={
+        girl_name: "Bé iu",
 
-        girl_name:"Bé iu",
+        date_choice:
+          "Bbi muốn ăn: " + selectedFoods.join(", ")
 
-        date_choice:selectedFoods.join(", ")
+      };
 
-    };
-
-    emailjs.send(
-
+      // Gửi mail
+      emailjs.send(
         "service_5pdh7mi",
-
         "template_s845ep8",
-
         templateParams
+      )
 
-    )
+      .then(function () {
 
-    .then(function(){
+        alert("Anh note món cho A Đam rồi nhé ");
 
-        alert("Anh nhận được món em muốn rồi ❤️");
+        // Chuyển trang
+        window.location.href = "activities.html";
 
-        location.href="trang cuối.html";
+      })
 
-    })
-
-    .catch(function(error){
-
-        alert("Gửi thất bại 😥");
+      .catch(function (error) {
 
         console.log(error);
 
-    });
+        alert("Gửi thất bại!");
 
-}
+      });
 
-</script>
+    }
+
+  </script>
+
 </body>
+
+</html>
