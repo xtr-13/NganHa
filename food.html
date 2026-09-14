@@ -90,7 +90,7 @@
   <input 
     type="text" 
     id="otherFoodInput" 
-    placeholder="Bbi muốn ăn món gì..."
+    placeholder="A Đam oder món khác:..."
     style="display: none;"
   >
 </div>
@@ -259,20 +259,11 @@
       templateParams
     )
 
-    .then(function () {
+ .then(function () {
 
-      alert("Anh note món cho A Đam rồi nhé ❤️");
+  alert("Anh note món cho A Đam rồi nhé ❤️");
 
-
-      // ==========================
-      // CHUYỂN SANG TRANG TIẾP
-      // ==========================
-
-      window.location.href =
-        "lastpage.html";
-
-    })
-
+})
     .catch(function (error) {
 
       console.log(error);
