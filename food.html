@@ -53,7 +53,7 @@
     <div class="food-item">
       <img src="https://beplorca.com.vn/wp-content/uploads/2025/10/Canh-cua-vnexpress-1756286225-8516-1756286355-e1760339885806.webp">
       <label>
-        <input type="checkbox" name="food" value="Pizza">
+        <input type="checkbox" name="food" value="Canh cua rau đay">
         Canh cua rau đay
       </label>
     </div>
@@ -81,6 +81,19 @@
         Chả lá lốt
       </label>
     </div>
+    <div class="food-item">
+  <label>
+    <input type="checkbox" name="food" value="Món khác" id="otherFoodCheck">
+    Món khác:
+  </label>
+
+  <input 
+    type="text" 
+    id="otherFoodInput" 
+    placeholder="Bbi muốn ăn món gì..."
+    style="display: none;"
+  >
+</div>
 
   </div>
 
@@ -91,67 +104,186 @@
   </button>
 
   <!-- EMAILJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <script>
+<script>
 
-    emailjs.init("_5gTYYeDHpz4pJYrQ");
+  // ==========================
+  // KHỞI TẠO EMAILJS
+  // ==========================
 
-    function sendFood() {
+  emailjs.init("_5gTYYeDHpz4pJYrQ");
 
-      // Lấy tất cả món được chọn
-      const selectedFoods = [];
 
-      document.querySelectorAll('input[name="food"]:checked')
-        .forEach((food) => {
-          selectedFoods.push(food.value);
-        });
+  // ==========================
+  // MÓN KHÁC - HIỆN Ô NHẬP
+  // ==========================
 
-      // Nếu chưa chọn món
-      if (selectedFoods.length === 0) {
+  document
+    .getElementById("otherFoodCheck")
+    .addEventListener("change", function () {
 
-        alert("A Đam");
+      const otherFoodInput =
+        document.getElementById("otherFoodInput");
 
-        return;
+
+      // Nếu chọn "Món khác"
+      if (this.checked) {
+
+        otherFoodInput.style.display = "block";
+
+        // Đưa con trỏ vào ô nhập
+        otherFoodInput.focus();
+
       }
 
-      // Nội dung gửi mail
-      const templateParams = {
+      // Nếu bỏ chọn "Món khác"
+      else {
 
-        girl_name: "Bé iu",
+        otherFoodInput.style.display = "none";
 
-        date_choice:
-          "Bbi muốn ăn: " + selectedFoods.join(", ")
+        // Xóa nội dung đã nhập
+        otherFoodInput.value = "";
 
-      };
+      }
 
-      // Gửi mail
-      emailjs.send(
-        "service_5pdh7mi",
-        "template_s845ep8",
-        templateParams
-      )
+    });
 
-      .then(function () {
 
-        alert("Anh note món cho A Đam rồi nhé ");
+  // ==========================
+  // GỬI MÓN ĂN
+  // ==========================
 
-        // Chuyển trang
-        window.location.href = "activities.html";
+  function sendFood() {
 
-      })
+    const selectedFoods = [];
 
-      .catch(function (error) {
 
-        console.log(error);
+    // ==========================
+    // KIỂM TRA MÓN KHÁC
+    // ==========================
 
-        alert("Gửi thất bại!");
+    const otherFoodCheck =
+      document.getElementById("otherFoodCheck");
 
-      });
+    const otherFoodInput =
+      document.getElementById("otherFoodInput");
+
+
+    // Nếu đã chọn "Món khác"
+    if (otherFoodCheck && otherFoodCheck.checked) {
+
+      const otherFood =
+        otherFoodInput.value.trim();
+
+
+      // Chưa nhập món
+      if (otherFood === "") {
+
+        alert("Bbi nhập món muốn ăn vào nha 🥺");
+
+        otherFoodInput.focus();
+
+        return;
+
+      }
 
     }
 
-  </script>
+
+    // ==========================
+    // LẤY CÁC MÓN ĐÃ CHỌN
+    // ==========================
+
+    document
+      .querySelectorAll('input[name="food"]:checked')
+      .forEach((food) => {
+
+
+        // Nếu là Món khác
+        if (food.id === "otherFoodCheck") {
+
+          const otherFood =
+            otherFoodInput.value.trim();
+
+          selectedFoods.push(otherFood);
+
+        }
+
+
+        // Nếu là món có sẵn
+        else {
+
+          selectedFoods.push(food.value);
+
+        }
+
+      });
+
+
+    // ==========================
+    // NẾU CHƯA CHỌN MÓN
+    // ==========================
+
+    if (selectedFoods.length === 0) {
+
+      alert("A Đam");
+
+      return;
+
+    }
+
+
+    // ==========================
+    // NỘI DUNG GỬI EMAIL
+    // ==========================
+
+    const templateParams = {
+
+      girl_name: "Bé iu",
+
+      date_choice:
+        "Bbi muốn ăn: " +
+        selectedFoods.join(", ")
+
+    };
+
+
+    // ==========================
+    // GỬI EMAIL
+    // ==========================
+
+    emailjs.send(
+      "service_5pdh7mi",
+      "template_s845ep8",
+      templateParams
+    )
+
+    .then(function () {
+
+      alert("Anh note món cho A Đam rồi nhé ❤️");
+
+
+      // ==========================
+      // CHUYỂN SANG TRANG TIẾP
+      // ==========================
+
+      window.location.href =
+        "activities.html";
+
+    })
+
+    .catch(function (error) {
+
+      console.log(error);
+
+      alert("Gửi thất bại!");
+
+    });
+
+  }
+
+</script>
 
 </body>
 
