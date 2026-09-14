@@ -177,3 +177,29 @@ input {
     padding-block: 1px;
     padding-inline: 2px;
 }
+
+#otherFoodInput {
+    width: 280px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-family: "Courier";
+    font-size: 16px;
+    color: #e67373;
+    background-color: #fffafa;
+    border: 2px solid #ff9494;
+    border-radius: 12px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Khi bấm vào ô nhập */
+#otherFoodInput:focus {
+    border-color: #e67373;
+    box-shadow: 0 0 6px rgba(255, 148, 148, 0.3);
+}
+
+/* Màu chữ gợi ý */
+#otherFoodInput::placeholder {
+    color: #c9a0a0;
+    font-family: "Courier";
+}
